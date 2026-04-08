@@ -14,13 +14,14 @@
     <packaging>content-package</packaging>
     <name>Assessment - All</name>
 
+    <properties>
+        <aem.host>localhost</aem.host>
+        <aem.port>4502</aem.port>
+        <aem.user>admin</aem.user>
+        <aem.password>admin</aem.password>
+    </properties>
+
     <dependencies>
-        <dependency>
-            <groupId>com.assessment</groupId>
-            <artifactId>assessment.ui.apps.structure</artifactId>
-            <version>${project.version}</version>
-            <type>zip</type>
-        </dependency>
         <dependency>
             <groupId>com.assessment</groupId>
             <artifactId>assessment.ui.apps</artifactId>
@@ -39,6 +40,11 @@
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>
+        <dependency>
+            <groupId>com.assessment</groupId>
+            <artifactId>assessment.core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -53,12 +59,6 @@
                     <packageType>container</packageType>
                     <name>assessment.all</name>
                     <embeddeds>
-                        <embedded>
-                            <groupId>com.assessment</groupId>
-                            <artifactId>assessment.ui.apps.structure</artifactId>
-                            <type>zip</type>
-                            <target>/apps/assessment-packages/application/install</target>
-                        </embedded>
                         <embedded>
                             <groupId>com.assessment</groupId>
                             <artifactId>assessment.ui.apps</artifactId>
@@ -77,9 +77,49 @@
                             <type>zip</type>
                             <target>/apps/assessment-packages/content/install</target>
                         </embedded>
+                        <embedded>
+                            <groupId>com.assessment</groupId>
+                            <artifactId>assessment.core</artifactId>
+                            <target>/apps/assessment-packages/application/install</target>
+                        </embedded>
                     </embeddeds>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>autoInstallPackage</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.day.jcr.vault</groupId>
+                        <artifactId>content-package-maven-plugin</artifactId>
+                        <version>1.0.6</version>
+                        <executions>
+                            <execution>
+                                <id>install-package</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>install</goal>
+                                </goals>
+                                <configuration>
+                                    <targetURL>
+                                        http://${aem.host}:${aem.port}/crx/packmgr/service.jsp</targetURL>
+                                    <userId>${aem.user}</userId>
+                                    <password>${aem.password}</password>
+                                    <failOnError>true</failOnError>
+                                    <timeout>30</timeout>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

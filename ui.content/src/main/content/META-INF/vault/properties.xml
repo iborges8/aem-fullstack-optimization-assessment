@@ -3,4 +3,8 @@
 <properties>
     <comment>Vault properties</comment>
     <entry key="packageFormatVersion">2</entry>
+    <entry key="group">assessment</entry>
+    <entry key="name">assessment.ui.content</entry>
+    <entry key="version">1.0.0-SNAPSHOT</entry>
+    <entry key="packageType">content</entry>
 </properties>

@@ -14,14 +14,6 @@
     <packaging>content-package</packaging>
     <name>Assessment - UI Apps</name>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.assessment</groupId>
-            <artifactId>assessment.core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -34,13 +26,13 @@
                     <packageType>application</packageType>
                     <name>assessment.ui.apps</name>
                     <allowIndexDefinitions>true</allowIndexDefinitions>
-                    <embeddeds>
-                        <embedded>
-                            <groupId>com.assessment</groupId>
-                            <artifactId>assessment.core</artifactId>
-                            <target>/apps/assessment/install</target>
-                        </embedded>
-                    </embeddeds>
+                    <validatorsSettings>
+                        <jackrabbit-filter>
+                            <options>
+                                <validRoots>/,/libs,/apps,/etc,/var,/tmp,/content,/apps/assessment</validRoots>
+                            </options>
+                        </jackrabbit-filter>
+                    </validatorsSettings>
                 </configuration>
             </plugin>
         </plugins>

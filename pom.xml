@@ -26,8 +26,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.release>11</maven.compiler.release>
         <aem.sdk.api.version>2026.2.24464.20260214T050318Z-260100</aem.sdk.api.version>
         <sling.models.version>1.5.0</sling.models.version>
         <osgi.annotations.version>1.4.0</osgi.annotations.version>

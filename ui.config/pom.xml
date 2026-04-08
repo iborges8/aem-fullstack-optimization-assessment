@@ -26,9 +26,15 @@
                     <packageType>application</packageType>
                     <name>assessment.ui.config</name>
                     <allowIndexDefinitions>true</allowIndexDefinitions>
+                    <validatorsSettings>
+                        <jackrabbit-filter>
+                            <options>
+                                <validRoots>/,/libs,/apps,/etc,/var,/tmp,/content,/apps/assessment</validRoots>
+                            </options>
+                        </jackrabbit-filter>
+                    </validatorsSettings>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 </project>
-
