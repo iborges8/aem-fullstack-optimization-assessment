@@ -31,3 +31,18 @@ A dedicated Maven profile was added for local development.
 
 - `autoInstallPackage` installs the generated package directly into the local AEM author instance.
 - This profile is intended only to speed up local validation and does not affect the project’s deployment structure.
+
+## 5) Editable template repair in `ui.content`
+
+The editable template setup in `ui.content` was updated so the sample page can render correctly in Author.
+
+- The template structure under `/conf/assessment/settings/wcm/templates/content-page` was aligned so that both `structure/jcr:content` and `initial/jcr:content` use `core/wcm/components/page/v3/page`.
+- The editable root area was aligned to `wcm/foundation/components/responsivegrid`.
+- Missing template policy mappings were restored so Author can resolve the expected page structure (`root -> container -> weather`) correctly.
+
+## 6) Authoring policy alignment
+
+The sample page and template were aligned to a single responsive grid policy for editable areas.
+
+- The responsive grid policy was updated to allow the `weather` component and nested layout containers.
+- The template structure and sample page content were aligned to that same policy so the component renders and remains editable in Author.

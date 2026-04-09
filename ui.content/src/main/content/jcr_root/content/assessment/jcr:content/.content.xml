@@ -4,6 +4,6 @@
           xmlns:cq="http://www.day.com/jcr/cq/1.0"
           jcr:primaryType="cq:PageContent"
           jcr:title="Assessment"
+          cq:allowedTemplates="[/conf/assessment/settings/wcm/templates/.*]"
           cq:conf="/conf/assessment"
           sling:resourceType="core/wcm/components/page/v3/page"/>
-
