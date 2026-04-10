@@ -46,3 +46,9 @@ The sample page and template were aligned to a single responsive grid policy for
 
 - The responsive grid policy was updated to allow the `weather` component and nested layout containers.
 - The template structure and sample page content were aligned to that same policy so the component renders and remains editable in Author.
+
+## 7) Legacy config cleanup
+
+Legacy configuration content under `/conf/global` was removed from `ui.content`.
+
+- This change keeps the sample site configuration focused under `/conf/assessment`, avoiding reliance on shared global patterns.
