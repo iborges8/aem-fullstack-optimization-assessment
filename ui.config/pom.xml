@@ -23,7 +23,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <group>assessment</group>
-                    <packageType>application</packageType>
+                    <packageType>mixed</packageType>
                     <name>assessment.ui.config</name>
                     <allowIndexDefinitions>true</allowIndexDefinitions>
                     <validatorsSettings>

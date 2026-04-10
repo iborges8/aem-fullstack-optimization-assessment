@@ -6,5 +6,5 @@
     <entry key="group">assessment</entry>
     <entry key="name">assessment.ui.config</entry>
     <entry key="version">1.0.0-SNAPSHOT</entry>
-    <entry key="packageType">application</entry>
+    <entry key="packageType">mixed</entry>
 </properties>

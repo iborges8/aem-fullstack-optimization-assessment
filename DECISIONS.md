@@ -52,3 +52,32 @@ The sample page and template were aligned to a single responsive grid policy for
 Legacy configuration content under `/conf/global` was removed from `ui.content`.
 
 - This change keeps the sample site configuration focused under `/conf/assessment`, avoiding reliance on shared global patterns.
+
+## 8) Backend weather configuration
+
+The weather service configuration was moved to OSGi configuration in `ui.config`.
+
+- The default endpoint, API key, and timeout settings are now provided by the service PID instead of being exposed in frontend code.
+- The API key is resolved from backend configuration so it can be managed securely per environment and injected as an environment secret.
+- The service can still run when the provider does not require an API key.
+
+## 9) Server-side weather delivery
+
+The weather component was refactored to use server-side data delivery.
+
+- Inline JavaScript and client-side API calls were removed from the HTL implementation.
+- The Sling Model now reads weather data from the backend service and passes only the rendered values to the template.
+
+## 10) Caching and resilience
+
+The backend integration now uses server-side caching and more resilient upstream request handling.
+
+- Weather responses are cached in memory with a configurable TTL to reduce repeated calls to the external provider.
+- When a cached entry expires, the existing cached value is returned immediately while a background refresh is triggered.
+- If the upstream call fails, the last cached value can still be served instead of failing the component immediately.
+
+## 11) Dispatcher hardening
+
+Dispatcher filters were changed to follow a deny-by-default approach.
+
+- Only the required public content paths and supporting client library endpoints were allowlisted.

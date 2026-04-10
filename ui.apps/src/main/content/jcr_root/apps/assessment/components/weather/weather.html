@@ -1,23 +1,23 @@
 <sly data-sly-use.weatherModel="com.assessment.core.models.WeatherModel"></sly>
-<div class="cmp-weather" data-city="${properties.city @ context='unsafe'}">
-    <h2>${weatherModel.pageTitle @ context='unsafe'}</h2>
-    <div class="cmp-weather__server">
-        ${weatherModel.weatherJson @ context='unsafe'}
-    </div>
-    <div class="cmp-weather__client"></div>
-    <script>
-        (function () {
-            var apiKey = 'frontend-weather-key-legacy-123';
-            var city = '${properties.city @ context="unsafe"}' || 'Bogota';
+<sly data-sly-test.hasCity="${weatherModel.cityConfigured}"></sly>
+<sly data-sly-test.hasWeather="${hasCity && weatherModel.configured}"></sly>
 
-            fetch('https://goweather.xyz/weather/' + city + '?apikey=' + apiKey)
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (data) {
-                    document.querySelector('.cmp-weather__client').innerHTML =
-                        '<p>' + city + ': ' + data.temperature + ' / ' + data.description + '</p>';
-                });
-        }());
-    </script>
+<div class="cmp-weather">
+  <h2>${weatherModel.pageTitle}</h2>
+
+  <p data-sly-test="${hasCity}">${weatherModel.city}</p>
+
+  <div class="cmp-weather__author" data-sly-test="${!hasCity}">
+    Configure the component and select a city to display weather data.
+  </div>
+
+  <div class="cmp-weather__server" data-sly-test="${hasWeather}">
+    <p>Temperature: ${weatherModel.weatherData.temperature}</p>
+    <p>Wind: ${weatherModel.weatherData.wind}</p>
+    <p>Description: ${weatherModel.weatherData.description}</p>
+  </div>
+
+  <div class="cmp-weather__error" data-sly-test="${hasCity && !hasWeather}">
+    Weather data is currently unavailable for ${weatherModel.city}. Please try again later.
+  </div>
 </div>

@@ -1,0 +1,7 @@
+{
+  "default_endpoint": "https://goweather.xyz/weather/%s",
+  "api_key": "$[secret:weather_api_key]",
+  "connect_timeout_ms": 2000,
+  "read_timeout_ms": 3000,
+  "cache_ttl_seconds": 300
+}
